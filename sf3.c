@@ -11,9 +11,9 @@ int lengthOfLongestSubstring(char *s) {
 
     for (int end = 0; end < n; end++) {
         if (charIndex[s[end]] != -1) 
-
+ 
         {
-            start = (charIndex[s[end]] >= start) ? charIndex[s[end]] + 1 : start;  
+            start = (charIndex[s[end]] >= start) ? charIndex[s[end]] + 1 : start;  /* 此处的charIndex[s[end]]为上一次的end */
         }
 
         /* 更新字符的最新位置 */ 
