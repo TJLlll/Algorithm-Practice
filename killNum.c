@@ -21,20 +21,20 @@ int* eliminateNum(int* str, int size, int* getSize, int targetNum)
             strget[idx2++] = str[idx1];
         }
     }
-    *getSize = idx2;
+    *getSize = idx2; /* 将idx2,也就是消除目标数后生成数组的元素个数通过地址给getSize */
     return strget;
 }
 
 int main()
 {
     srand(time(NULL));
-    int getSize;
-    int size = rand() % 10 + 1;
+    int getSize;  /* 消除目标后的数组元素个数 */
+    int size = rand() % 10 + 1;  /* 待处理的数组的元素个数 */
     int targetNum = rand() % 10 + 1;
 
     printf("目标数为：%d\n", targetNum);
 
-    int* arr = malloc(size * sizeof(int));
+    int* arr = malloc(size * sizeof(int));/* 创建一个名为arr的数组，并为其分配size大小的内存空间 */  
 
     for (int idx1 = 0; idx1 < size; idx1++)
     {
@@ -50,7 +50,7 @@ int main()
 
     printf("\n");
 
-    int* strget = eliminateNum(arr, size, &getSize, targetNum);
+    int* strget = eliminateNum(arr, size, &getSize, targetNum);/* 用指针strget来接收消除目标数的函数返回的地址 */
 
     printf("消除targetNum后的数组为:\n");
     for (int idx = 0; idx < getSize; idx++)
