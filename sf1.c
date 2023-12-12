@@ -39,7 +39,7 @@ int main()
     srand(time(NULL));
 
     /* 生成随机大小的数组 */
-    int size = rand() % 10 + 1; 
+    int size = rand() % 100 + 1; 
     int* array = malloc(size * sizeof(int));  /* 此处(size * sizeof(int)中的*为乘的意思，意为给array数组分配size个int大小的内存空间，并将首地址给array */
     if (array == NULL) 
     {
@@ -50,15 +50,15 @@ int main()
     /* 随机生成数组中的数 */
     for (int i = 0; i < size; ++i) 
     {
-        array[i] = rand() % 100;
+        array[i] = rand() % 100 + 1;
     }
 
     /* 给定目标数 */
-    int targetNum = rand() % 100;
+    int targetNum = rand() % 100 + 1;
     printf("Generated array:\n");
-    for (int i = 0; i < size; ++i) 
+    for (int idx = 0; idx < size; ++idx) 
     {
-        printf("%d ", array[i]);
+        printf("%d ", array[idx]);
     }
     printf("\nTarget number: %d\n", targetNum);
 
