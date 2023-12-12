@@ -1,65 +1,59 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-void swap(int* a, int* b)
+/* 原地删除数组中等于目标数字的元素 */
+void eliminateNum(int* arr, int size, int* getSize, int targetNum)
 {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
-int* eliminateNum(int* str, int size, int* getSize, int targetNum)
-{
-    int *strget = malloc(size * sizeof(int));
     int idx1, idx2 = 0;
 
     for (idx1 = 0; idx1 < size; idx1++)
     {
-        if (str[idx1] != targetNum)
+        if (arr[idx1] != targetNum)
         {
-            strget[idx2++] = str[idx1];
+            /* 如果当前元素不等于目标数字，将其移到数组的前部 */ 
+            /* 注意这里不再使用额外的数组，而是在原地进行操作 */ 
+            arr[idx2++] = arr[idx1];
         }
     }
-    *getSize = idx2; /* 将idx2,也就是消除目标数后生成数组的元素个数通过地址给getSize */
-    return strget;
+
+    *getSize = idx2; /* 更新修改后的数组大小 */ 
 }
 
 int main()
 {
     srand(time(NULL));
-    int getSize;  /* 消除目标后的数组元素个数 */
-    int size = rand() % 10 + 1;  /* 待处理的数组的元素个数 */
+
+    int getSize;
+    int size = rand() % 10 + 1;
     int targetNum = rand() % 10 + 1;
+    printf("生成的目标数为：%d\n", targetNum);
+    int* arr = malloc(size * sizeof(int));
 
-    printf("目标数为：%d\n", targetNum);
-
-    int* arr = malloc(size * sizeof(int));/* 创建一个名为arr的数组，并为其分配size大小的内存空间 */  
-
+    /* 随机生成数组元素 */ 
     for (int idx1 = 0; idx1 < size; idx1++)
     {
         arr[idx1] = rand() % 10 + 1;
     }
 
-    printf("生成的数组为：\n");
-
+    /* 输出原始数组 */ 
+    printf("原始数组: ");
     for (int idx = 0; idx < size; idx++)
     {
         printf("%d ", arr[idx]);
     }
-
     printf("\n");
 
-    int* strget = eliminateNum(arr, size, &getSize, targetNum);/* 用指针strget来接收消除目标数的函数返回的地址 */
+    /* 原地删除等于目标数字的元素 */ 
+    eliminateNum(arr, size, &getSize, targetNum);
 
-    printf("消除targetNum后的数组为:\n");
+    /* 输出修改后的数组 */ 
+    printf("删除%d后的数组: ", targetNum);
     for (int idx = 0; idx < getSize; idx++)
     {
-        printf("%d ", strget[idx]);
+        printf("%d ", arr[idx]);
     }
     printf("\n");
 
     free(arr);
-    free(strget);
     return 0;
 }
