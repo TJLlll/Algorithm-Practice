@@ -27,7 +27,7 @@ int* mergeOderNum(int *num1, int num1Size, int *num2, int num2Size, int *newNumS
         idx3++;
     }
 
-    /* 将剩余元素 */
+    /* 将有多余元素剩下的数组中的数给newNum */
     while (idx1 < num1Size)
     {
         newNum[idx3] = num1[idx1];
