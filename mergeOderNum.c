@@ -1,3 +1,9 @@
+/*
+    作业要求：   
+        1.用指定参数
+        2.返回值为int*型
+        3.用malloc()函数
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
