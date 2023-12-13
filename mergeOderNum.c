@@ -5,9 +5,13 @@
 
 int* mergeOderNum(int *num1, int num1Size, int *num2, int num2Size, int *newNumSize)
 {
+
+    /* 计算合并后数组的大小为num1Size + num2Size */
+    *newNumSize = num1Size + num2Size;
+
     /* 为目标数组分配空间，并初始化为0 */
     int *newNum = (int *)malloc((*newNumSize) * sizeof(int));
-
+    
     /* 数组元素复制 */
     int idx1 = 0;
     int idx2 = 0;
@@ -29,19 +33,23 @@ int* mergeOderNum(int *num1, int num1Size, int *num2, int num2Size, int *newNumS
 
     /* 通过判断idx与numSize的大小来判断哪个数组先把所有的数给完 */
     /* 将有多余元素剩下的数组中的数给newNum */
-    while (idx1 < num1Size)
+    while(idx3 < *newNumSize)
+    {
+        if (idx1 < num1Size)
     {
         newNum[idx3] = num1[idx1];
         idx1++;
         idx3++;
     }
-
-    while (idx2 < num2Size)
+    else /* (idx2 < num2Size) */
     {
         newNum[idx3] = num2[idx2];
         idx2++;
         idx3++;
     }
+
+    }
+    
 
     return newNum;
 }
@@ -100,13 +108,15 @@ int main()
     sort(num2, num2Size);
 
     /* 打印出两个数组的数 */
-    printf("数组1的数为: \n");
+    printf("数组一有%d个数: \n", num1Size);
     for (int idx = 0; idx < num1Size; idx++)
     {
         printf("%d ", num1[idx]);
     }
 
-    printf("\n数组2的数为: \n");
+    printf("\n");
+
+    printf("数组二有%d个数: \n", num2Size);
     for (int idx = 0; idx < num2Size; idx++)
     {
         printf("%d ", num2[idx]);
@@ -114,13 +124,13 @@ int main()
 
     printf("\n");
 
-    /* 计算合并后数组的大小为num1Size + num2Size */
-    int newNumSize = num1Size + num2Size;
+
+    int newNumSize = 0;
 
     int *newNum = mergeOderNum(num1, num1Size, num2, num2Size, &newNumSize);
 
     /* 打印出得到的数组 */
-    printf("得到的数组为：\n");
+    printf("合并后得到的数组为%d个数:\n", newNumSize);
 
     for (int idx = 0; idx < newNumSize; idx++)
     {
