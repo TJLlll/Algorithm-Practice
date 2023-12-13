@@ -27,6 +27,7 @@ int* mergeOderNum(int *num1, int num1Size, int *num2, int num2Size, int *newNumS
         idx3++;
     }
 
+    /* 通过判断idx与numSize的大小来判断哪个数组先把所有的数给完 */
     /* 将有多余元素剩下的数组中的数给newNum */
     while (idx1 < num1Size)
     {
@@ -45,6 +46,7 @@ int* mergeOderNum(int *num1, int num1Size, int *num2, int num2Size, int *newNumS
     return newNum;
 }
 
+/* 用于下面的排序函数 */
 void swap(int *a, int *b)
 {
     int temp = *a;
@@ -52,6 +54,7 @@ void swap(int *a, int *b)
     *b = temp;
 }
 
+/* 之前选择排序的排序函数 */ 
 void sort(int arr[], int size)
 {
     for (int idx1 = 0; idx1 < size - 1; idx1++)
@@ -116,7 +119,7 @@ int main()
 
     int *newNum = mergeOderNum(num1, num1Size, num2, num2Size, &newNumSize);
 
-    /**/
+    /* 打印出得到的数组 */
     printf("得到的数组为：\n");
 
     for (int idx = 0; idx < newNumSize; idx++)
