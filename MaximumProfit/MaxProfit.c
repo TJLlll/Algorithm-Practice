@@ -5,8 +5,7 @@
 
 int maxProfit(int prices[], int Days) 
 {
-
-
+    
     if (Days < 2) 
     {
         return 0;
